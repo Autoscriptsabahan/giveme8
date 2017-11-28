@@ -65,17 +65,6 @@ echo "
 INSTALLER PROCESS PLEASE WAIT
 TAKE TIME 5-10 MINUTE
 "
-# set repo
-	wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/sources.list.debian8.lokal"
-		wget "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/dotdeb.gpg"
-		apt-key add dotdeb.gpg
-		rm dotdeb.gpg
-		apt-get install python-software-properties 
-		apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
-		cd /root
-		wget http://www.webmin.com/jcameron-key.asc
-		apt-key add jcameron-key.asc
-		cd
 
 # fail2ban & exim & protection
 apt-get -y install fail2ban sysv-rc-conf dnsutils dsniff zip unzip;
