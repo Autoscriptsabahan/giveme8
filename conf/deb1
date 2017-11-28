@@ -64,18 +64,6 @@ echo "
 INSTALLER PROCESS PLEASE WAIT
 TAKE TIME 5-10 MINUTE
 "
-# REPO
-wget -O /etc/apt/sources.list "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/sources.list.debian8.lokal"
-wget "https://raw.githubusercontent.com/GegeEmbrie/autosshvpn/master/file/dotdeb.gpg"
-apt-key add dotdeb.gpg
-rm dotdeb.gpg
-apt-get install python-software-properties 
-apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
-cd /root
-wget http://www.webmin.com/jcameron-key.asc
-apt-key add jcameron-key.asc
-cd
-
 # fail2ban & exim & protection
 apt-get -y install fail2ban sysv-rc-conf dnsutils dsniff zip unzip;
 wget https://github.com/jgmdev/ddos-deflate/archive/master.zip;unzip master.zip;
@@ -224,8 +212,6 @@ clear
 service ssh restart
 service openvpn restart
 service dropbear restart
-service nginx restart
-service php7.0-fpm restart
 service webmin restart
 service squid restart
 service fail2ban restart
@@ -268,6 +254,3 @@ echo "
 	  [   T H A N K   Y O U  ]
 "
 cat /dev/null > ~/.bash_history && history -c
-rm *.txt
-rm *.sh
-fi
