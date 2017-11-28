@@ -1,5 +1,11 @@
 #!/bin/bash
-
+# ******************************************
+# Program: AUTOSCRIPT INSTALL DEBIAN 8.x 32/64Bit
+# Developer:Ciplak Script
+# COMPANY : PremiumScript
+# Date: 18/7/2017
+# Last Updated: 19/7/2017
+# ******************************************
 # MULA SETUP
 myip=`ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0' | head -n1`;
 myint=`ifconfig | grep -B1 "inet addr:$myip" | head -n1 | awk '{print $1}'`;
@@ -19,14 +25,15 @@ echo "
 AUTOSCRIPT BY OrangKuatSabahanTerkini
 AMBIL PERHATIAN !!!"
 clear
-echo "MULA SETUP"
+
+echo "START AUTOSCRIPT"
 clear
 echo "SET TIMEZONE KUALA LUMPUT GMT +8"
 ln -fs /usr/share/zoneinfo/Asia/Kuala_Lumpur /etc/localtime;
 clear
 echo "
 ENABLE IPV4 AND IPV6
-SILA TUNGGU SEDANG DI SETUP
+COMPLETE 1%
 "
 echo ipv4 >> /etc/modules
 echo ipv6 >> /etc/modules
@@ -35,8 +42,10 @@ sed -i 's/#net.ipv4.ip_forward=1/net.ipv4.ip_forward=1/g' /etc/sysctl.conf
 sed -i 's/#net.ipv6.conf.all.forwarding=1/net.ipv6.conf.all.forwarding=1/g' /etc/sysctl.conf
 sysctl -p
 clear
+
 echo "
-MEMBUANG SPAM PACKAGE
+REMOVE SPAM PACKAGE
+COMPLETE 10%
 "
 apt-get -y --purge remove samba*;
 apt-get -y --purge remove apache2*;
@@ -45,17 +54,28 @@ apt-get -y --purge remove postfix*;
 apt-get -y --purge remove bind*;
 clear
 echo "
+UPDATE AND UPGRADE PROCESS 
+PLEASE WAIT TAKE TIME 1-5 MINUTE
 "
 sh -c 'echo "deb http://download.webmin.com/download/repository sarge contrib" > /etc/apt/sources.list.d/webmin.list'
 wget -qO - http://www.webmin.com/jcameron-key.asc | apt-key add -
 apt-get update;
-apt-get -y autoremove;
+apt-get -y upgrade;
 apt-get -y install wget curl;
 echo "
+INSTALLER PROCESS PLEASE WAIT
+TAKE TIME 5-10 MINUTE
 "
-# script
-wget -O /etc/pam.d/common-password "https://raw.githubusercontent.com/BlackHand7752/giveme8/master/conf/common-password"
-chmod +x /etc/pam.d/common-password
+
+# text gambar
+apt-get install boxes
+# color text
+cd
+rm -rf /root/.bashrc
+wget -O /root/.bashrc "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/.bashrc"
+# install lolcat
+sudo apt-get -y install ruby
+sudo gem install lolcat
 # fail2ban & exim & protection
 apt-get -y install fail2ban sysv-rc-conf dnsutils dsniff zip unzip;
 wget https://github.com/jgmdev/ddos-deflate/archive/master.zip;unzip master.zip;
@@ -64,90 +84,81 @@ service exim4 stop;sysv-rc-conf exim4 off;
 # webmin
 apt-get -y install webmin
 sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
+# ssh
+sed -i 's/#Banner/Banner/g' /etc/ssh/sshd_config
+sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 # dropbear
 apt-get -y install dropbear
-wget -O /etc/default/dropbear "https://raw.githubusercontent.com/BlackHand7752/giveme8/master/conf/dropbear"
+wget -O /etc/default/dropbear "https://raw.githubusercontent.com/macisvpn/randomVPS/master/dropbear"
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
+cd
 # squid3
 apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/BlackHand7752/giveme8/master/conf/squid.conf"
-wget -O /etc/squid/squid.conf "https://raw.githubusercontent.com/BlackHand7752/giveme8/master/conf/squid.conf"
+wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/macisvpn/randomVPS/master/squid.conf"
 sed -i "s/ipserver/$myip/g" /etc/squid3/squid.conf
-sed -i "s/ipserver/$myip/g" /etc/squid/squid.conf
+cd
 # openvpn
 apt-get -y install openvpn
-wget -O /etc/openvpn/openvpn.tar "https://raw.githubusercontent.com/BlackHand7752/giveme8/master/conf/openvpn.tar"
+wget -O /etc/openvpn/openvpn.tar "http://autoscriptnobita.tk/rendum/openvpn.tar"
 cd /etc/openvpn/;tar xf openvpn.tar;rm openvpn.tar
-wget -O /etc/rc.local "https://raw.githubusercontent.com/BlackHand7752/giveme8/master/conf/rc.local";chmod +x /etc/rc.local
-#wget -O /etc/iptables.up.rules "https://raw.githubusercontent.com/BlackHand7752/giveme8/master/conf/iptables.up.rules"
+wget -O /etc/rc.local "http://autoscriptnobita.tk/rendum/rc.local";chmod +x /etc/rc.local
+#wget -O /etc/iptables.up.rules "http://rzvpn.net/random/iptables.up.rules"
 #sed -i "s/ipserver/$myip/g" /etc/iptables.up.rules
 #iptables-restore < /etc/iptables.up.rules
 # nginx
 apt-get -y install nginx php-fpm php-mcrypt php-cli libexpat1-dev libxml-parser-perl
 rm /etc/nginx/sites-enabled/default
 rm /etc/nginx/sites-available/default
-wget -O /etc/php/7.0/fpm/pool.d/www.conf "https://raw.githubusercontent.com/BlackHand7752/giveme8/master/conf/www.conf"
+wget -O /etc/php/7.0/fpm/pool.d/www.conf "http://rzvpn.net/random/www.conf"
 mkdir -p /home/vps/public_html
-echo "<pre>Setup by | telegram @OrangKuatSabahanTerkini | website OrangKuatSabahanTerkini.tk</pre>" > /home/vps/public_html/index.php
+echo "<pre>Setup by Nobita95 | telegram @nobinobita95 | website autoscriptnobita.tk</pre>" > /home/vps/public_html/index.php
 echo "<?php phpinfo(); ?>" > /home/vps/public_html/info.php
-wget -O /etc/nginx/conf.d/vps.conf "https://raw.githubusercontent.com/BlackHand7752/giveme8/master/conf/vps.conf"
+wget -O /etc/nginx/conf.d/vps.conf "http://autoscriptnobita.tk/rendum/vps.conf"
 sed -i 's/listen = \/var\/run\/php7.0-fpm.sock/listen = 127.0.0.1:9000/g' /etc/php/7.0/fpm/pool.d/www.conf
 # etc
-wget -O /home/vps/public_html/client.ovpn "https://raw.githubusercontent.com/BlackHand7752/giveme8/master/conf/client.ovpn"
+wget -O /home/vps/public_html/client.ovpn "http://autoscriptnobita.tk/rendum/client.ovpn"
+wget -O /etc/motd "http://autoscriptnobita.tk/rendum/motd"
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 sed -i "s/ipserver/$myip/g" /home/vps/public_html/client.ovpn
 useradd -m -g users -s /bin/bash archangels
-echo "Admin" | chpasswd
+echo "7C22C4ED" | chpasswd
 echo "UPDATE DAN INSTALL SIAP 99% MOHON SABAR"
 cd;rm *.sh;rm *.txt;rm *.tar;rm *.deb;rm *.asc;rm *.zip;rm ddos*;
 clear
 
-# text gambar
-apt-get install boxes
-
-# color text
-cd
-rm -rf /root/.bashrc
-wget -O /root/.bashrc "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/.bashrc"
-
-# install lolcat
-sudo apt-get -y install ruby
-sudo gem install lolcat
-
 # download script
 cd
-wget -O /usr/bin/motd "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/motd"
-wget -O /usr/bin/benchmark "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/benchmark.sh"
-wget -O /usr/bin/speedtest "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/speedtest_cli.py"
-wget -O /usr/bin/ps-mem "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/ps_mem.py"
-wget -O /usr/bin/dropmon "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/dropmon.sh"
-wget -O /usr/bin/menu "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/menu.sh"
-wget -O /usr/bin/user-active-list "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/user-active-list.sh"
-wget -O /usr/bin/user-add "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/user-add.sh"
-wget -O /usr/bin/user-add-pptp "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/user-add-pptp.sh"
-wget -O /usr/bin/user-del "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/user-del.sh"
-wget -O /usr/bin/disable-user-expire "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/disable-user-expire.sh"
-wget -O /usr/bin/delete-user-expire "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/delete-user-expire.sh"
-wget -O /usr/bin/banned-user "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/banned-user.sh"
-wget -O /usr/bin/unbanned-user "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/unbanned-user.sh"
-wget -O /usr/bin/user-expire-list "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/user-expire-list.sh"
-wget -O /usr/bin/user-gen "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/user-gen.sh"
-wget -O /usr/bin/userlimit.sh "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/userlimit.sh"
-wget -O /usr/bin/userlimitssh.sh "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/userlimitssh.sh"
-wget -O /usr/bin/user-list "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/user-list.sh"
-wget -O /usr/bin/user-login "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/user-login.sh"
-wget -O /usr/bin/user-pass "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/user-pass.sh"
-wget -O /usr/bin/user-renew "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/user-renew.sh"
-wget -O /usr/bin/clearcache.sh "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/clearcache.sh"
-wget -O /usr/bin/bannermenu "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/bannermenu"
+wget -O /usr/bin/benchmark "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/benchmark.sh"
+wget -O /usr/bin/speedtest  "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/speedtest_cli.py"
+wget -O /usr/bin/ps-mem "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/ps_mem.py"
+wget -O /usr/bin/dropmon "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/dropmon.sh"
+wget -O /usr/bin/menu "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/menu"
+wget -O /usr/bin/user-active-list "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-active-list.sh"
+wget -O /usr/bin/user-add "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-add.sh"
+wget -O /usr/bin/user-add-pptp "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-add-pptp.sh"
+wget -O /usr/bin/user-del "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-del.sh"
+wget -O /usr/bin/disable-user-expire "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/disable-user-expire.sh"
+wget -O /usr/bin/delete-user-expire "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/delete-user-expire.sh"
+wget -O /usr/bin/banned-user "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/banned-user.sh"
+wget -O /usr/bin/unbanned-user "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/unbanned-user.sh"
+wget -O /usr/bin/user-expire-list "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-expire-list.sh"
+wget -O /usr/bin/user-gen "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-gen.sh"
+wget -O /usr/bin/userlimit.sh "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/userlimit.sh"
+wget -O /usr/bin/userlimitssh.sh "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/userlimitssh.sh"
+wget -O /usr/bin/user-list "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-list.sh"
+wget -O /usr/bin/user-login "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-login.sh"
+wget -O /usr/bin/user-pass "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-pass.sh"
+wget -O /usr/bin/user-renew "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-renew.sh"
+wget -O /usr/bin/clearcache.sh "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/clearcache.sh"
+wget -O /usr/bin/bannermenu "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/bannermenu"
 cd
 
 #rm -rf /etc/cron.weekly/
 #rm -rf /etc/cron.hourly/
 #rm -rf /etc/cron.monthly/
 rm -rf /etc/cron.daily/
-wget -O /root/passwd "https://raw.githubusercontent.com/BlackHand7752/-myhand03/master/passwd.sh"
+wget -O /root/passwd "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/passwd.sh"
 chmod +x /root/passwd
 echo "01 23 * * * root /root/passwd" > /etc/cron.d/passwd
 
@@ -158,7 +169,6 @@ echo "0 */12 * * * root /sbin/reboot" > /etc/cron.d/reboot
 echo "*/30 * * * * root /usr/bin/clearcache.sh" > /etc/cron.d/clearcache1
 
 cd
-chmod +x /usr/bin/motd
 chmod +x /usr/bin/benchmark
 chmod +x /usr/bin/speedtest
 chmod +x /usr/bin/ps-mem
@@ -185,6 +195,7 @@ chmod +x /usr/bin/clearcache.sh
 chmod +x /usr/bin/bannermenu
 cd
 
+clear
 # restart service
 service ssh restart
 service openvpn restart
@@ -195,6 +206,18 @@ service webmin restart
 service squid restart
 service fail2ban restart
 clear
+# SELASAI SUDAH BOSS! ( AutoscriptByOrangKuatSabahanTerkini )
+
+# restart service
+service ssh restart
+service openvpn restart
+service dropbear restart
+service nginx restart
+service php5-fpm restart
+service webmin restart
+service squid3 restart
+service fail2ban restart
+
 # SELASAI SUDAH BOSS! ( AutoscriptByOrangKuatSabahanTerkini )
 echo "========================================"  | tee -a log-install.txt
 echo "Service Autoscript OrangKuatSabahanTerkini (OrangKuatSabahanTerkini SCRIPT 2017)"  | tee -a log-install.txt
@@ -217,3 +240,7 @@ echo "========================================"  | tee -a log-install.txt
 echo "      PLEASE REBOOT TO TAKE EFFECT !"
 echo "========================================"  | tee -a log-install.txt
 cat /dev/null > ~/.bash_history && history -c
+rm *.txt
+rm *.sh
+exit
+fi
