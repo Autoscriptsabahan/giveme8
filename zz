@@ -83,10 +83,9 @@ echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 # squid3
 apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "http://autoscriptnobita.tk/rendum/squid.conf"
-wget -O /etc/squid/squid.conf "http://autoscriptnobita.tk/rendum/squid.conf"
+wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/macisvpn/randomVPS/master/squid.conf"
 sed -i "s/ipserver/$myip/g" /etc/squid3/squid.conf
-sed -i "s/ipserver/$myip/g" /etc/squid/squid.conf
+cd
 # openvpn
 apt-get -y install openvpn
 wget -O /etc/openvpn/openvpn.tar "http://autoscriptnobita.tk/rendum/openvpn.tar"
