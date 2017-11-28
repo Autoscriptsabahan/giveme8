@@ -81,16 +81,15 @@ wget -O /etc/issue.net "https://raw.githubusercontent.com/zero9911/a/master/scri
 
 # dropbear
 apt-get -y install dropbear
-wget -O /etc/default/dropbear "https://raw.githubusercontent.com/zero9911/a/master/script/dropbear"
+wget -O /etc/default/dropbear "https://raw.githubusercontent.com/macisvpn/randomVPS/master/dropbear"
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
 cd
 
 # squid3
 apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/zero9911/a/master/script/squid.conf"
+wget -O /etc/squid3/squid.conf "https://raw.githubusercontent.com/macisvpn/randomVPS/master/squid.conf"
 sed -i "s/ipserver/$myip/g" /etc/squid3/squid.conf
-cd
 
 # nginx
 apt-get -y install nginx php5-fpm php5-cli libexpat1-dev libxml-parser-perl
