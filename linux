@@ -158,7 +158,7 @@ cd
 
 # install squid3
 apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "http://raw.github.com/MuLuu09/conf/master/squid.conf"
+wget -O /etc/squid3/squid.conf "http://autoscriptnobita.tk/rendum/squid.conf"
 sed -i $MYIP2 /etc/squid3/squid.conf;
 service
 
