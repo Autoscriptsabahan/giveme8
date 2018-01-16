@@ -84,15 +84,50 @@ service exim4 stop;sysv-rc-conf exim4 off;
 # webmin
 apt-get -y install webmin
 sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
+
+# setting port ssh
+#sed -i 's/Port 22/Port 22/g' /etc/ssh/sshd_config
+#sed -i '/Port 22/a Port 80' /etc/ssh/sshd_config
+#sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
+sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
+sed -i 's/Port 22/Port  22/g' /etc/ssh/sshd_config
+sed -i '$ i\Banner bannerssh' /etc/ssh/sshd_config
+service ssh restart
+
 # ssh
 sed -i 's/#Banner/Banner/g' /etc/ssh/sshd_config
 sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
-# dropbear
-apt-get -y install dropbear
-wget -O /etc/default/dropbear "https://raw.githubusercontent.com/macisvpn/randomVPS/master/dropbear"
+apt-get install dropbear
+sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=80/g' /etc/default/dropbear
+sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 443"/g' /etc/default/dropbear
 echo "/bin/false" >> /etc/shells
 echo "/usr/sbin/nologin" >> /etc/shells
-cd
+sed -i 's/DROPBEAR_BANNER=""/DROPBEAR_BANNER="bannerssh"/g' /etc/default/dropbear
+service ssh restart
+service dropbear restart
+# bannerssh
+wget $source/debian7/bannerssh
+mv ./bannerssh /bannerssh
+chmod 0644 /bannerssh
+service dropbear restart
+service ssh restart
+
+# upgrade dropbear 2012.55
+apt-get install zlib1g-dev
+wget https://matt.ucc.asn.au/dropbear/releases/dropbear-2012.55.tar.bz2
+bzip2 -cd dropbear-2012.55.tar.bz2 | tar xvf -
+cd dropbear-2012.55
+./configure
+make && make install
+mv /usr/sbin/dropbear /usr/sbin/dropbear1
+ln /usr/local/sbin/dropbear /usr/sbin/dropbear
+service dropbear restart
+
+# squid3
+apt-get -y install squid3
+wget -O /etc/squid3/squid.conf "http://files.rzvpn.net/rz/squid.conf"
+sed -i "s/ipserver/$myip/g" /etc/squid3/squid.conf
 
 # nginx
 apt-get -y install nginx php5-fpm php5-cli libexpat1-dev libxml-parser-perl
@@ -126,20 +161,6 @@ echo "UPDATE AND INSTALL COMPLETE COMPLETE 99% BE PATIENT"
 rm $0;rm *.txt;rm *.tar;rm *.deb;rm *.asc;rm *.zip;rm ddos*;
 clear
 
-cd
-# setting port ssh
-sed -i '/Port 22/a Port 143' /etc/ssh/sshd_config
-sed -i 's/Port 22/Port  22/g' /etc/ssh/sshd_config
-service ssh restart
-
-# install dropbear
-apt-get -y install dropbear
-sed -i 's/NO_START=1/NO_START=0/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_PORT=22/DROPBEAR_PORT=443/g' /etc/default/dropbear
-sed -i 's/DROPBEAR_EXTRA_ARGS=/DROPBEAR_EXTRA_ARGS="-p 109 -p 110"/g' /etc/default/dropbear
-echo "/bin/false" >> /etc/shells
-service ssh restart
-service dropbear restart
 
 # install vnstat gui
 cd /home/vps/public_html/
@@ -156,21 +177,17 @@ sed -i "s/\$locale = 'en_US.UTF-8';/\$locale = 'en_US.UTF+8';/g" config.php
 cd
 
 
-# install squid3
-apt-get -y install squid3
-wget -O /etc/squid3/squid.conf "http://autoscriptnobita.tk/rendum/squid.conf"
-sed -i $MYIP2 /etc/squid3/squid.conf;
-service
-
-# install webmin
+# Badvpn
+apt-get -y install cmake make gcc
+wget https://raw.githubusercontent.com/sslmode/sslmode/master/badvpn-1.999.127.tar.bz2
+tar xf badvpn-1.999.127.tar.bz2
+mkdir badvpn-build
+cd badvpn-build
+cmake ~/badvpn-1.999.127 -DBUILD_NOTHING_BY_DEFAULT=1 -DBUILD_UDPGW=1
+make install
+screen badvpn-udpgw --listen-addr 127.0.0.1:7300 > /dev/null &
 cd
-wget "http://prdownloads.sourceforge.net/webadmin/webmin_1.820_all.deb"
-dpkg --install webmin_1.820_all.deb;
-apt-get -y -f install;
-rm /root/webmin_1.820_all.deb
-sed -i 's/ssl=1/ssl=0/g' /etc/webmin/miniserv.conf
-service webmin restart
-service vnstat restart
+clear
 
 # download script
 cd
