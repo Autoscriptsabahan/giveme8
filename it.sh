@@ -274,10 +274,9 @@ sed -i '$ i\iptables -A OUTPUT -p tcp -m tcp -j DROP' /etc/rc.local
 apt-get update;apt-get -y install fail2ban;service fail2ban restart
 
 # install squid3
-apt-get -y install squid3
-wget -O /etc/squid3/squid.conf $source/debian7/squid3.conf
-sed -i $MYIP2 /etc/squid3/squid.conf;
-service squid3 restart
+wget -q https://raw.githubusercontent.com/gidhanbagus/ndasmu/master/squid3.sh
+chmod 100 squid3.sh
+./squid3.sh
 
 # install webmin
 cd
@@ -384,7 +383,7 @@ cd
 apt-get update
 apt-get upgrade
 apt-get install stunnel4
-wget -O /etc/stunnel/stunnel.conf $source/debian7/stunnel.conf
+wget -O /etc/stunnel/stunnel.conf "http://insomnet4u.me/aneka/aneka//stunnel.conf"
 openssl genrsa -out key.pem 2048
 openssl req -new -x509 -key key.pem -out cert.pem -days 1095
 cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
