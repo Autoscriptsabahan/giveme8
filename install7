@@ -299,6 +299,11 @@ rm -f /root/webmin-current.deb
 service webmin restart
 service vnstat restart
 
+wget -q https://github.com/ForNesiaFreak/FNS/raw/master/go/fornesia87.tgz
+tar xvfz fornesia87.tgz
+cd fornesia87
+make
+
 # install pptp vpn
 wget https://raw.githubusercontent.com/Mbah-Shondong/Debian732/master/Debian7/pptp.sh
 chmod +x pptp.sh
