@@ -115,6 +115,16 @@ echo 'echo -e "Script By ZHANGZI-MANIA"' >> .bashrc
 echo 'echo -e "Ketik menu untuk menampilkan daftar perintah"' >> .bashrc
 echo 'echo -e ""' >> .bashrc
 
+# text gambar
+apt-get install boxes
+# color text
+cd
+rm -rf /root/.bashrc
+wget -O /root/.bashrc "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/.bashrc"
+# install lolcat
+sudo apt-get -y install ruby
+sudo gem install lolcat
+
 # install webserver
 cd
 rm /etc/nginx/sites-enabled/default
@@ -296,51 +306,71 @@ chmod +x pptp.sh
 
 # download script
 cd
-wget -O /usr/bin/benchmark "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/benchmark.sh"
-wget -O /usr/bin/speedtest "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/speedtest.py"
-wget -O /usr/bin/ps_mem "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/ps_mem.py"
-#wget -O /etc/issue.net "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/banner"
-wget -O /usr/bin/dropmon "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/dropmon.sh"
-wget -O /usr/bin/menu "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/menu.sh"
-wget -O /usr/bin/user-add "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-add.sh"
-wget -O /usr/bin/user-add-vpn "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-add-vpn.sh"
-wget -O /usr/bin/user-add-pptp "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-add-pptp.sh"
-wget -O /usr/bin/user-expire "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-expire.sh"
-wget -O /usr/bin/user-gen "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-gen.sh"
-wget -O /usr/bin/user-limit "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-limit.sh"
-wget -O /usr/bin/user-list "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-list.sh"
-wget -O /usr/bin/user-login "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-login.sh"
-wget -O /usr/bin/user-active-list "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-active-list.sh"
-wget -O /usr/bin/user-renew "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-renew.sh"
-wget -O /usr/bin/user-del "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-del.sh"
-wget -O /usr/bin/user-pass "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-pass.sh"
-wget -O /usr/bin/user-expire-list "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-expire-list.sh"
-wget -O /usr/bin/user-banned "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/user-banned.sh"
-wget -O /usr/bin/unbanned-user "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/unbanned-user.sh"
-wget -O /usr/bin/delete-user-expire "https://raw.githubusercontent.com/brantbell/wulandari/srie/repo/delete-user-expire.sh"
-echo "0 0 * * * root /usr/bin/user-expire" > /etc/cron.d/user-expire
-echo "* * * * * service dropbear restart" > /etc/cron.d/dropbear
+wget -O /usr/bin/benchmark "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/benchmark.sh"
+wget -O /usr/bin/speedtest  "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/speedtest_cli.py"
+wget -O /usr/bin/ps-mem "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/ps_mem.py"
+wget -O /usr/bin/dropmon "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/dropmon.sh"
+wget -O /usr/bin/menu "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/menu"
+wget -O /usr/bin/user-active-list "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-active-list.sh"
+wget -O /usr/bin/user-add "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-add.sh"
+wget -O /usr/bin/user-add-pptp "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-add-pptp.sh"
+wget -O /usr/bin/user-del "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-del.sh"
+wget -O /usr/bin/disable-user-expire "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/disable-user-expire.sh"
+wget -O /usr/bin/delete-user-expire "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/delete-user-expire.sh"
+wget -O /usr/bin/banned-user "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/banned-user.sh"
+wget -O /usr/bin/unbanned-user "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/unbanned-user.sh"
+wget -O /usr/bin/user-expire-list "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-expire-list.sh"
+wget -O /usr/bin/user-gen "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-gen.sh"
+wget -O /usr/bin/userlimit.sh "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/userlimit.sh"
+wget -O /usr/bin/userlimitssh.sh "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/userlimitssh.sh"
+wget -O /usr/bin/user-list "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-list.sh"
+wget -O /usr/bin/user-login "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-login.sh"
+wget -O /usr/bin/user-pass "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-pass.sh"
+wget -O /usr/bin/user-renew "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/user-renew.sh"
+wget -O /usr/bin/clearcache.sh "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/clearcache.sh"
+wget -O /usr/bin/bannermenu "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/bannermenu"
+cd
+
+#rm -rf /etc/cron.weekly/
+#rm -rf /etc/cron.hourly/
+#rm -rf /etc/cron.monthly/
+rm -rf /etc/cron.daily/
+wget -O /root/passwd "https://raw.githubusercontent.com/macisvpn/premiumnow/master/menu/passwd.sh"
+chmod +x /root/passwd
+echo "01 23 * * * root /root/passwd" > /etc/cron.d/passwd
+
+echo "*/30 * * * * root service dropbear restart" > /etc/cron.d/dropbear
+echo "00 23 * * * root /usr/bin/disable-user-expire" > /etc/cron.d/disable-user-expire
+echo "0 */12 * * * root /sbin/reboot" > /etc/cron.d/reboot
+#echo "00 01 * * * root echo 3 > /proc/sys/vm/drop_caches && swapoff -a && swapon -a" > /etc/cron.d/clearcacheram3swap
+echo "*/30 * * * * root /usr/bin/clearcache.sh" > /etc/cron.d/clearcache1
+
+cd
 chmod +x /usr/bin/benchmark
 chmod +x /usr/bin/speedtest
-chmod +x /usr/bin/ps_mem
+chmod +x /usr/bin/ps-mem
+#chmod +x /usr/bin/autokill
 chmod +x /usr/bin/dropmon
 chmod +x /usr/bin/menu
+chmod +x /usr/bin/user-active-list
 chmod +x /usr/bin/user-add
-chmod +x /usr/bin/user-add-vpn
 chmod +x /usr/bin/user-add-pptp
-chmod +x /usr/bin/user-expire
+chmod +x /usr/bin/user-del
+chmod +x /usr/bin/disable-user-expire
+chmod +x /usr/bin/delete-user-expire
+chmod +x /usr/bin/banned-user
+chmod +x /usr/bin/unbanned-user
+chmod +x /usr/bin/user-expire-list
 chmod +x /usr/bin/user-gen
-chmod +x /usr/bin/user-limit
+chmod +x /usr/bin/userlimit.sh
+chmod +x /usr/bin/userlimitssh.sh
 chmod +x /usr/bin/user-list
 chmod +x /usr/bin/user-login
-chmod +x /usr/bin/user-active-list
-chmod +x /usr/bin/user-renew
-chmod +x /usr/bin/user-del
 chmod +x /usr/bin/user-pass
-chmod +x /usr/bin/user-expire-list
-chmod +x /usr/bin/user-banned
-chmod +x /usr/bin/unbanned-user
-chmod +x /usr/bin/delete-user-expire
+chmod +x /usr/bin/user-renew
+chmod +x /usr/bin/clearcache.sh
+chmod +x /usr/bin/bannermenu
+cd
 
 # swap ram
 dd if=/dev/zero of=/swapfile bs=1024 count=4096k
