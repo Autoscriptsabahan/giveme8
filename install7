@@ -417,75 +417,35 @@ echo "unset HISTFILE" >> /etc/profile
 
 # info
 clear
-echo "Fitur yang Tersedia" | tee log-install.txt
-echo "=======================================================" | tee -a log-install.txt
-echo "Service :" | tee -a log-install.txt
-echo "---------" | tee -a log-install.txt
-echo "OpenSSH  : 22, 143" | tee -a log-install.txt
-echo "Dropbear&Ssl : 777, 442, 443" | tee -a log-install.txt
-echo "Squid3   : 8080, 3128 (limit to IP $MYIP)" | tee -a log-install.txt
-echo "OpenVPN  : TCP 1194 (client config : http://$MYIP:81/client.ovpn)"  | tee -a log-install.txt
-echo "badvpn   : badvpn-udpgw port 7300" | tee -a log-install.txt
-echo "nginx    : 81" | tee -a log-install.txt
-echo "" | tee -a log-install.txt
-
-echo "Tools :" | tee -a log-install.txt
-echo "-------" | tee -a log-install.txt
-echo "axel, bmon, htop, iftop, mtr, rkhunter, nethogs: nethogs $ether" | tee -a log-install.txt
-echo "" | tee -a log-install.txt
-echo "Script :" | tee -a log-install.txt
-
-echo "--------" | tee -a log-install.txt
-echo "  - menu (Menu Script VPS via Putty) :" | tee -a log-install.txt
-echo "  - Buat Akun SSH/OpenVPN (user-add)" | tee -a log-install.txt
-echo "  - Banned Akun Nakal (user-banned)" | tee -a log-install.txt
-echo "  - Buka Kunci Akun Nakal (unbanned-user)" | tee -a log-install.txt
-echo "  - Hapus Akun SSH/OpenVPN (user-del)" | tee -a log-install.txt
-echo "  - Ganti Kata Sandi Akun SSH/OpenVPN (user-pass)" | tee -a log-install.txt
-echo "  - Tambah Masa Aktif SSH/OpenVPN (user-renew)" | tee -a log-install.txt
-echo "  - Generate SSH/OpenVPN (user-gen)" | tee -a log-install.txt
-echo "  - Monitoring Dropbear (dropmon [PORT])" | tee -a log-install.txt
-echo "  - Cek Login Dropbear, OpenSSH, PPTP VPN dan OpenVPN (user-login)" | tee -a log-install.txt
-echo "  - Kill Multi Login Manual (1-2 Login) (user-limit [x])" | tee -a log-install.txt
-echo "  - Daftar Akun Aktif (user-active-list)" | tee -a log-install.txt
-echo "  - Daftar List User (user-list)" | tee -a log-install.txt
-echo "  - Daftar Akun Kadaluwarsa (user-expire-list)" | tee -a log-install.txt
-echo "  - Akun Kadaluwarsa (user-expire)" | tee -a log-install.txt
-echo "  - Hapus Akun Kadaluwarsa (delete-user-expire)" | tee -a log-install.txt
-echo "  - Memory Usage (ps-mem)" | tee -a log-install.txt
-echo "  - Speedtest (speedtest --share)" | tee -a log-install.txt
-echo "  - Benchmark (benchmark)" | tee -a log-install.txt
-echo "  - Reboot Server" | tee -a log-install.txt
-echo "" | tee -a log-install.txt
-
-echo "Fitur lain :" | tee -a log-install.txt
-echo "------------" | tee -a log-install.txt
-echo "Webmin         : http://$MYIP:10000/" | tee -a log-install.txt
-echo "vnstat         : http://$MYIP:81/vnstat/ (Cek Bandwith)" | tee -a log-install.txt
-echo "MRTG           : http://$MYIP:81/mrtg/" | tee -a log-install.txt
-echo "Timezone       : Asia/Jakarta (GMT +7)" | tee -a log-install.txt
-echo "Fail2Ban       : [on]" | tee -a log-install.txt
-echo "(D)DoS Deflate : [on]" | tee -a log-install.txt
-echo "Block Torrent  : [off]" | tee -a log-install.txt
-echo "IPv6           : [off]" | tee -a log-install.txt
-echo "Auto Lock User Expire tiap jam 00:00" | tee -a log-install.txt
-echo "Auto Reboot tiap jam 00:00" | tee -a log-install.txt
-echo "" | tee -a log-install.txt
-
-echo "Edited By ZHANG-ZI" | tee -a log-install.txt
-echo "ADMIN WWW KOPET88.COM" | tee -a log-install.txt
-echo "Internet Gratis Sak Lawase" | tee -a log-install.txt
-echo "" | tee -a log-install.txt
-echo "Log Instalasi --> /root/log-install.txt" | tee -a log-install.txt
-echo "" | tee -a log-install.txt
-
-echo "***************SETUP COMPLETED********************" | tee -a log-install.txt
-echo "-----------SILAHKAN REBOOT VPS ANDA---------------" | tee -a log-install.txt
-echo "==================================================" | tee -a log-install.txt
-echo "=============Ketik reboot ENTER =================="  | tee -a log-install.txt
+echo ""  | tee -a log-install.txt | lolcat
+echo "--------------------------- Penjelasan Setup Server ----------------------------" | lolcat
+echo "                         Copyright orangkuatsabahanterkini                     " | lolcat
+echo "                        http://www,borneobesthosting.me                         " | lolcat
+echo "--------------------------------------------------------------------------------" | lolcat
+echo "========================================"  | tee -a log-install.txt | lolcat
+echo "Service Autoscript OrangKuatSabahanTerkini (OrangKuatSabahanTerkini SCRIPT 2017)"  | tee -a log-install.txt | lolcat
+echo "----------------------------------------"  | tee -a log-install.txt | lolcat
+echo ""  | tee -a log-install.txt | lolcat
+echo "nginx : http://$myip:80"   | tee -a log-install.txt | lolcat
+echo "Webmin : http://$myip:10000/"  | tee -a log-install.txt | lolcat
+echo "Squid3 : 8080"  | tee -a log-install.txt | lolcat
+echo "OpenSSH : 22"  | tee -a log-install.txt | lolcat
+echo "Dropbear : 109'110'442"  | tee -a log-install.txt | lolcat
+echo "SSL : 443"  | tee -a log-install.txt | lolcat
+echo "OpenVPN  : IP/client.ovpn"  | tee -a log-install.txt | lolcat
+echo "Fail2Ban : [on]"  | tee -a log-install.txt | lolcat
+echo "Timezone : Asia/Kuala_Lumpur"  | tee -a log-install.txt | lolcat
+echo "Menu : type menu to check menu script"  | tee -a log-install.txt | lolcat
+echo ""  | tee -a log-install.txt | lolcat
+echo "----------------------------------------" | lolcat
+echo "LOG INSTALL  --> /root/log-install.txt" | lolcat
+echo "----------------------------------------" | lolcat
+echo "========================================"  | tee -a log-install.txt | lolcat
+echo "      PLEASE REBOOT TO TAKE EFFECT !" | lolcat
+echo "========================================"  | tee -a log-install.txt | lolcat
 cd ~/
 rm -f /root/mrtg-mem
 rm -f /root/pptp.sh
 rm -f /root/dropbear-2017.75.tar.bz2
 rm -rf /root/dropbear-2017.75
-rm -f /root/insta777
+rm -f /root/insta7
